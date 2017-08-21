@@ -27,7 +27,7 @@ client.on('message', message => {
 		if (message.channel.id == token.channel) message.reply('pong');
 		else message.reply('wrong channel');
     }
-    if (message.content.startsWith("!") && message.author.id == key.owner) {
+    if (message.content.startsWith("!") && message.author.id == token.owner) {
 		var command = message.content.substr(1);
 		if (command.startsWith("follow ")) {
 		    command = command.substr(7);
