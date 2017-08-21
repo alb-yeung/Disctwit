@@ -24,23 +24,23 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (message.content === 'ping') {
-	if (message.channel.id == token.channel) message.reply('pong');
-	else message.reply('wrong channel');
+		if (message.channel.id == token.channel) message.reply('pong');
+		else message.reply('wrong channel');
     }
-    if (message.content.startsWith("!")) {
-	var command = message.content.substr(1);
-	if (command.startsWith("follow ")) {
-	    command = command.substr(7);
-	    twitter.getUser({screen_name : command}, errorUser, successUser);
-	}
-	if (command.startsWith("loadHere")){
-	    channel = message.channel;
-	    message.reply("loaded in this channel!!");
-	}
-	if (command.startsWith("save"))
-	    token.following = following;
-	if (command.startsWith("following"))
-	    channel.send(followingNames);
+    if (message.content.startsWith("!") && message.author.id == key.owner) {
+		var command = message.content.substr(1);
+		if (command.startsWith("follow ")) {
+		    command = command.substr(7);
+		    twitter.getUser({screen_name : command}, errorUser, successUser);
+		}
+		if (command.startsWith("loadHere")){
+		    channel = message.channel;
+		    message.reply("loaded in this channel!!");
+		}
+		if (command.startsWith("save"))
+		    token.following = following;
+		if (command.startsWith("following"))
+		    channel.send(followingNames);
     }
 });
 
