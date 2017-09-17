@@ -62,7 +62,7 @@ client.on('message', message => {
 			    token.following = following;
 			    channel.send("Saving the following names");
 			    channel.send('```' + followingNames + '```');
-			    fs.readFile('./following.txt', followingNames.join('|'), function(err){
+			    fs.writeFile('./following.txt', followingNames.join('|'), function(err){
 			    	if (err) {
 			    		return console.log(err);
 			    	}
