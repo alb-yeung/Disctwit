@@ -55,8 +55,7 @@ client.on('message', message => {
 			}
 			if (command.startsWith("remove ")){
 				command = command.substr(7);
-				following.pop();
-				followingNames.pop();
+				twitter.getUser({screen_name : command}, errorRemove, successRemove);
 			}
 			if (command.startsWith("save")){
 			    token.following = following;
@@ -94,6 +93,21 @@ var successUser = function (data) {
    		channel.send("Following list now ```" + followingNames + "```");
    	}
 };
+
+
+//Twitter remove error and success
+var errorRemove = function (err, response, body) {
+	console.log('ERROR [%s]', err);
+	return 0;
+}
+
+var successRemove = function (data) {
+	user = JSON.parse(data);
+	var index = followingNames.indexOf(user.screen_name);
+	followingNames.splice(index, 1);
+	index = following.indexOf(user.id);
+	following.splice(index, 1);
+}
 
 stream.on('data', json => {
     //console.log(json);
