@@ -98,7 +98,9 @@ var successUser = function (data) {
 stream.on('data', json => {
     //console.log(json);
     if (following.includes(json.user.id) && channel){
-		channel.send(json.user.screen_name + " tweeted ```" + json.text + "```");// + "https://twitter.com/" + json.user.screen_name + "/status/" + json.id_str);
+	var str = json.user.screen_name + " tweeted ```" + json.text + "```");
+	str.replace("_", "\_");
+	channel.send(str);// + "https://twitter.com/" + json.user.screen_name + "/status/" + json.id_str);
     }
 });
 
