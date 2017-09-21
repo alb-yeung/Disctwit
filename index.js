@@ -112,7 +112,7 @@ var successRemove = function (data) {
 stream.on('data', json => {
     //console.log(json);
     if (following.includes(json.user.id) && channel){
-	var str = json.user.screen_name + " tweeted ```" + json.text + "```");
+	var str = json.user.screen_name + " tweeted ```" + json.text + "```";
 	str.replace("_", "\_");
 	channel.send(str);// + "https://twitter.com/" + json.user.screen_name + "/status/" + json.id_str);
     }
