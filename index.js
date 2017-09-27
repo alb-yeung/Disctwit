@@ -24,17 +24,8 @@ var channel;
 
 client.on('ready', () => {
     console.log('I am loaded!!!');
-    console.log("Starting following list");
-    console.log(followingNames);
-    fs.readFile('./following.txt', 'utf8', function(err, data){
-    	if (err){
-    		return console.log(err);
-    	}
-    	var tempNames = data.split('|');
-    	for (var i = 0; i < tempNames.length; i++){
-    		twitter.getUser({screen_name : tempNames[i]}, errorUser, successUser);
-    	}
-    });
+    //console.log("Starting following list");
+    //console.log(followingNames);
 });
 
 client.on('message', message => {
@@ -120,3 +111,13 @@ stream.on('data', json => {
 
 client.login(token.discord);
 stream.stream();
+
+fs.readFile('./following.txt', 'utf8', function(err, data){
+        if (err){
+                return console.log(err);
+        }
+        var tempNames = data.split('|');
+        for (var i = 0; i < tempNames.length; i++){
+                twitter.getUser({screen_name : tempNames[i]}, errorUser, successUser);
+	}
+});
